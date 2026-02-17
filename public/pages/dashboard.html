@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RouteSaver - Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="dashboard-page">
+  <!-- ======== Top Bar ======== -->
+  <header class="topbar">
+    <h1 class="topbar-logo">RouteSaver</h1>
+    <div class="topbar-user">
+      <span id="userName" class="topbar-name"></span>
+    </div>
+    <div class="topbar-actions">
+      <button id="btnNewRoute" class="btn btn-primary btn-sm">+ Nova Rota</button>
+      <button id="btnLogout" class="btn btn-outline btn-sm">Sair</button>
+    </div>
+  </header>
+
+  <!-- ======== Main Content ======== -->
+  <main class="dashboard-main">
+    <!-- Sidebar: Route List -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>Minhas Rotas</h2>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" id="searchRoutes" placeholder="Buscar rota..." />
+      </div>
+      <ul id="routeList" class="route-list">
+        <!-- routes rendered here dynamically -->
+      </ul>
+      <div id="emptyState" class="empty-state">
+        <p>Nenhuma rota salva ainda.</p>
+        <p>Clique em <strong>+ Nova Rota</strong> para começar.</p>
+      </div>
+    </aside>
+
+    <!-- Map -->
+    <section class="map-container">
+      <div id="map"></div>
+
+      <!-- Search bar -->
+      <div class="map-search">
+        <form id="searchForm" class="map-search-form">
+          <input type="text" id="searchInput" placeholder="Buscar endereço..." autocomplete="off" />
+          <button type="submit" class="btn btn-primary btn-xs">Buscar</button>
+        </form>
+        <ul id="searchResults" class="search-results"></ul>
+      </div>
+
+      <!-- Route creation bar (hidden by default) -->
+      <div id="routeBar" class="route-bar" hidden>
+        <div class="route-bar-content">
+          <input type="text" id="routeName" placeholder="Nome da rota..." class="route-name-input" />
+          <span id="pointCount" class="point-count">0 pontos</span>
+          <button id="btnUndoPoint" class="btn btn-outline btn-xs" disabled>Desfazer</button>
+          <button id="btnSaveRoute" class="btn btn-success btn-xs" disabled>Salvar</button>
+          <button id="btnCancelRoute" class="btn btn-danger btn-xs">Cancelar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======== Modal: Confirm Delete ======== -->
+  <div id="deleteModal" class="modal-overlay">
+    <div class="modal">
+      <h3>Excluir Rota</h3>
+      <p>Tem certeza que deseja excluir esta rota? Esta ação não pode ser desfeita.</p>
+      <div class="modal-actions">
+        <button id="btnConfirmDelete" class="btn btn-danger btn-sm">Excluir</button>
+        <button id="btnCancelDelete" class="btn btn-outline btn-sm">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
